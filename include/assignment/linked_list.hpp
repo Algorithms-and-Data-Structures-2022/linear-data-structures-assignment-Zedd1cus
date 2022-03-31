@@ -17,6 +17,7 @@ namespace assignment {
     int size_{0};           // кол-вод узлов в списке
     Node* front_{nullptr};  // указатель на начальный узел
     Node* back_{nullptr};   // указатель на конечный узел
+    int count = 0;
 
    public:
     /**
@@ -138,6 +139,8 @@ namespace assignment {
      * @return указатель на найденный узел или nullptr (индекс за пределами списка)
      */
     Node* FindNode(int index) const;
+
+    void push_front(int value);
 
     // ДЛЯ ТЕСТИРОВАНИЯ
     explicit LinkedList(const std::vector<int>& values);

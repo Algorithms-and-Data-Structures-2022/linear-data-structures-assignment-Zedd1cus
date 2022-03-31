@@ -18,6 +18,20 @@ namespace assignment {
      * @param next - указатель на следующий узел
      */
     explicit Node(int value, Node* next = nullptr);
+
+    const int get_value() const {
+      return value;
+    }
+    void set_value(int some_value) {
+      value = some_value;
+    }
+    void set_next(Node* some_next) {
+      next = some_next;
+    }
+
+    auto get_next() const {
+      return next;
+    }
   };
 
   /**
