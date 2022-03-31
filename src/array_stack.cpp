@@ -12,49 +12,73 @@ namespace assignment {
       throw std::invalid_argument("capacity is not positive");
     }
 
-    // Write your code here ...
+    data_ = new int[capacity]{};
+    size_ = 0;
+    capacity_ = capacity;
   }
 
   ArrayStack::~ArrayStack() {
-    // Write your code here ...
+    delete[] data_;
+    size_ = 0;
+    capacity_ = 0;
   }
 
   void ArrayStack::Push(int value) {
-    // Write your code here ...
+    if (size_ == capacity_){
+      ArrayStack::Resize(capacity_+kCapacityGrowthCoefficient);
+    }
+    data_[size_] = value;
+    size_ += 1;
   }
 
   bool ArrayStack::Pop() {
-    // Write your code here ...
-    return false;
+    if (size_ == 0) {
+      return false;
+    }
+    data_[size_-1] = {};
+    size_ -= 1;
+    return true;
   }
 
   void ArrayStack::Clear() {
-    // Write your code here ...
+    delete[] data_;
+    size_ = 0;
+    data_ = new int[capacity_]{};
   }
 
   std::optional<int> ArrayStack::Peek() const {
-    // Write your code here ...
-    return std::nullopt;
+    if (size_ != 0){
+      return data_[size_-1];
+    }
   }
 
   bool ArrayStack::IsEmpty() const {
-    // Write your code here ...
+    if (size_ == 0){
+      return true;
+    }
     return false;
   }
 
   int ArrayStack::size() const {
-    // Write your code here ...
-    return 0;
+    return size_;
   }
 
   int ArrayStack::capacity() const {
-    // Write your code here ...
-    return 0;
+    return capacity_;
   }
 
   bool ArrayStack::Resize(int new_capacity) {
-    // Write your code here ...
-    return false;
+    if (new_capacity <= capacity_) {
+      return false;
+    }
+    int* array = new int[new_capacity]{};
+    for (int i = 0; i < size_; i++){
+      array[i] = data_[i];
+    }
+    delete[] data_;
+    data_ = array;
+    capacity_ = new_capacity;
+    return true;
   }
 
   // ДЛЯ ТЕСТИРОВАНИЯ
